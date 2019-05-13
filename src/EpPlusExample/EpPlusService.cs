@@ -35,6 +35,12 @@ namespace EpPlusExample
                     cells.Style.Font.Bold = true;
                 }
 
+                //First add the headers
+                for (var i = 0; i < columnHeaders.Count(); i++)
+                {
+                    worksheet.Cells[1, i + 1].Value = columnHeaders[i];
+                }
+
                 var j = 2; // Start content row
                 foreach (var data in datas)
                 {
@@ -43,12 +49,6 @@ namespace EpPlusExample
                     worksheet.Cells[("C" + j)].Value = data.NickName;
                     worksheet.Cells[("D" + j)].Value = data.Age;
                     j++;
-                }
-
-                //First add the headers
-                for (var i = 0; i < columnHeaders.Count(); i++)
-                {
-                    worksheet.Cells[1, i + 1].Value = columnHeaders[i];
                 }
                 // worksheet.Cells.AutoFitColumns();
                 package.SaveAs(inputStream);
